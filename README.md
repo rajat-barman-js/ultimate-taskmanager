@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+Ultimate Task Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Overview
+Built on React and Redux, the Ultimate Task Manager is a task management application that allows users to perform operations such as adding, editing, deleting and marking tasks as complete. Apart from that it includes features like sorting functionality, filtering functionality and search functionality to help you manage your tasks effectively.
 
-## Available Scripts
+External Dependencies
+The project uses the following external dependencies:
 
-In the project directory, you can run:
+React: A JavaScript library for building user interfaces.
+Redux: A predictable state container for JavaScript apps.
+react-redux: Official React bindings for Redux.
 
-### `npm start`
+Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the Repository:
+   git clone https://github.com/rajat-barman-js/ultimate-taskmanager.git
+   cd ultimate-taskmanager
+2. Install Dependencies:
+   Make sure you have Node.js and npm installed.
+   Then, run: npm install
+3. Start the Application:
+   npm start
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Project Structure
 
-### `npm test`
+ultimate-taskmanager/
+├── node_modules/
+├── public/
+│ └── index.html
+├── src/
+│ ├── components/
+│ │ ├── TaskForm.js
+│ │ ├── TaskForm.css
+│ │ ├── TaskItem.js
+│ │ ├── TaskItem.css
+│ │ ├── TaskList.js
+│ │ ├── TaskList.css
+│ ├── constants/
+│ │ ├── common-constants.js
+│ │ ├── enum.js
+│ ├── redux/
+│ │ ├── task-actions.js
+│ │ ├── task-reducers.js
+│ │ ├── store.js
+│ │ ├── custom-middleware.js
+│ ├── App.js
+│ ├── App.css
+│ ├── index.js
+│ ├── index.css
+├── .gitignore
+├── package.json
+└── README.md
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Components of the project
 
-### `npm run build`
+1.TaskForm Component:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Located at src/components/TaskForm.jsx and styled with src/components/TaskForm.css.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Can add or edit a task. It has title, description, priority and due date fields to accommodate these functionalities.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. TaskItem Component:
 
-### `npm run eject`
+Located at src/components/TaskItem.jsx and styled with src/components/TaskItem.css.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Displays single tasks and allows them to be deleted, edited and toggle complete/incomplete.
+The delete function is represented by a "Delete" button while the complete function is represented by a "Mark as complete button", which can be toggled to icomplete by clicking on the "Mark as Incomplete" button. Task can be edited by clicking on the edit button and saving changes on the Edit Task form.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. TaskList Component:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Located at src/components/TaskList.jsx and styled with src/components/TaskList.css.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Contains list of task, sort controls and search criteria that can filter out tasks based on specific conditions set for it including searching mechanism
 
-## Learn More
+4. Redux Store:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The tasks actions are defined in src/redux/task-actions.js.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+In its turn, the reducer to handle tasks state change is saved in src/redux/task-reducer.js. As far as Redux store configuration process is concerned, it can be found in src/redux/store.js.
 
-### Code Splitting
+5. Main App Component:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Located at src/App.js and styled with src/App.css.
 
-### Analyzing the Bundle Size
+It combines TaskForm and TaskList to give the main interface of this application. The main page displays all tasks available in todo-list format which appears below when “Add new task” button gets clicked
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+6. Entry Point:
 
-### Making a Progressive Web App
+The entry point of the application is source/index.js file where it renders the App component inside the root div of public/index.html.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Notes:
 
-### Advanced Configuration
+1. The application keeps the tasks in the local storage of the browser, meaning that even after closing, it retains them.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. The app has a way of ordering tasks based on either priority or due date. It can be done both from sort dropdown.
 
-### Deployment
+3. Users are able to filter completed or uncompleted tasks.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+4. Additionally, users can search for any task by its name or description.
 
-### `npm run build` fails to minify
+Future Improvements:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Integration with a backend service.
+
+2. More choices in terms of customization for sorting and filtering tasks should be added.
+
+This document is meant to help you understand how to set up and use Ultimate Task Manager on your local machine. It will show you the directory structure, dependencies, and components of the project in a way that makes it easy for developers to understand.

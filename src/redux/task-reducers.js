@@ -6,7 +6,7 @@ import {
   SET_FILTER,
   SET_SORT,
   SET_SEARCH,
-} from "./actions";
+} from "./task-actions";
 
 const initialState = {
   tasks: JSON.parse(localStorage.getItem("tasks")) || [],
