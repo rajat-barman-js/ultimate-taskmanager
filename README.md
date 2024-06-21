@@ -13,8 +13,8 @@ The project uses the following external dependencies:
 Installation
 
 1. Clone the Repository:
-   git clone https://github.com/rajat-barman-js/ultimate-taskmanager.git
-   cd ultimate-taskmanager
+   1.1. git clone https://github.com/rajat-barman-js/ultimate-taskmanager.git
+   1.2. cd ultimate-taskmanager
 2. Install Dependencies:
    Make sure you have Node.js and npm installed.
    Then, run: npm install
