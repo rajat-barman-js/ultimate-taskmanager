@@ -6,9 +6,9 @@ Built on React and Redux, the Ultimate Task Manager is a task management applica
 External Dependencies
 The project uses the following external dependencies:
 
-React: A JavaScript library for building user interfaces.
-Redux: A predictable state container for JavaScript apps.
-react-redux: Official React bindings for Redux.
+1. React: A JavaScript library for building user interfaces.
+2. Redux: A predictable state container for JavaScript apps.
+3. react-redux: Official React bindings for Redux.
 
 Installation
 
