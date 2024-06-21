@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import TaskItem from "./TaskItem";
 import { setFilter, setSort, setSearch } from "../redux/actions";
 import { PRIORITY_ORDER } from "../constants/enum";
+import { FILTER, SORT } from "../constants/common-constant";
 import "./TaskList.css";
 
 const TaskList = ({ setEditingTask }) => {
-  const tasks = useSelector((state) => state.tasks);
-  const filter = useSelector((state) => state.filter);
-  const sort = useSelector((state) => state.sort);
-  const search = useSelector((state) => state.search);
+  const tasks = useSelector((state) => state.taskReducer.tasks);
+  const filter = useSelector((state) => state.taskReducer.filter);
+  const sort = useSelector((state) => state.taskReducer.sort);
+  const search = useSelector((state) => state.taskReducer.search);
   const dispatch = useDispatch();
 
   const handleSort = (criteria) => {
@@ -26,8 +27,8 @@ const TaskList = ({ setEditingTask }) => {
 
   const filteredTasks = tasks
     .filter((task) => {
-      if (filter === "completed") return task.completed;
-      if (filter === "incomplete") return !task.completed;
+      if (filter === FILTER.COMPLETED) return task.completed;
+      if (filter === FILTER.INCOMPLETE) return !task.completed;
       return true;
     })
     .filter(
@@ -36,14 +37,18 @@ const TaskList = ({ setEditingTask }) => {
     )
     .sort((a, b) => {
       if (!sort) return 0;
-      if (sort === "priorityAsc")
+      if (sort === SORT.PRIORITY_ASC) {
         return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
-      if (sort === "priorityDesc")
+      }
+      if (sort === SORT.PRIORITY_DESC) {
         return PRIORITY_ORDER[b.priority] - PRIORITY_ORDER[a.priority];
-      if (sort === "dueDateAsc")
+      }
+      if (sort === SORT.DUE_DATE_ASC) {
         return new Date(a.dueDate) - new Date(b.dueDate);
-      if (sort === "dueDateDesc")
+      }
+      if (sort === SORT.DUE_DATE_DESC) {
         return new Date(b.dueDate) - new Date(a.dueDate);
+      }
       return 0;
     });
 
@@ -63,10 +68,10 @@ const TaskList = ({ setEditingTask }) => {
             aria-label="Sort tasks"
           >
             <option value="">Sort by</option>
-            <option value="priorityAsc">Priority (Low to High)</option>
-            <option value="priorityDesc">Priority (High to Low)</option>
-            <option value="dueDateAsc">Due Date (Earliest First)</option>
-            <option value="dueDateDesc">Due Date (Latest First)</option>
+            <option value={SORT.PRIORITY_ASC}>Priority (Low to High)</option>
+            <option value={SORT.PRIORITY_DESC}>Priority (High to Low)</option>
+            <option value={SORT.DUE_DATE_ASC}>Due Date (Earliest First)</option>
+            <option value={SORT.DUE_DATE_DESC}>Due Date (Latest First)</option>
           </select>
           <select
             onChange={(e) => handleFilter(e.target.value)}
@@ -74,8 +79,8 @@ const TaskList = ({ setEditingTask }) => {
             aria-label="Filter tasks"
           >
             <option value="">Filter by</option>
-            <option value="completed">Completed</option>
-            <option value="incomplete">Incomplete</option>
+            <option value={FILTER.COMPLETED}>Completed</option>
+            <option value={FILTER.INCOMPLETE}>Incomplete</option>
           </select>
         </div>
       </div>

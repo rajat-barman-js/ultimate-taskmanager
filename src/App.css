@@ -54,7 +54,13 @@ form label {
 }
 
 form input,
-form textarea,
+form textarea {
+  width: 97%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
 form select {
   width: 100%;
   padding: 10px;
@@ -77,6 +83,23 @@ form button {
 
 form button:hover {
   background-color: #0056b3;
+}
+
+form button.delault-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #b1b1b1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button.delault-button:hover {
+  background-color: #959595;
 }
 
 /* Controls Styles */

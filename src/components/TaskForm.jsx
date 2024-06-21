@@ -58,6 +58,12 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
     setEditingTask(null);
   };
 
+  const cancelEdit = (e) => {
+    resetForm();
+    setEditingTask(null);
+    e.preventDefault();
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -107,9 +113,25 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
           required
+          min={new Date().toISOString().slice(0, 10)}
         />
       </div>
       <button type="submit">{editingTask ? "Save Changes" : "Add Task"}</button>
+      {editingTask ? (
+        <button onClick={cancelEdit} className="delault-button">
+          Cancel Edit
+        </button>
+      ) : (
+        <button
+          onClick={(e) => {
+            resetForm();
+            e.preventDefault();
+          }}
+          className="delault-button"
+        >
+          Reset Form
+        </button>
+      )}
     </form>
   );
 };

@@ -15,7 +15,7 @@ const initialState = {
   search: "",
 };
 
-const rootReducer = (state = initialState, action) => {
+const taskReducer = (state = initialState, action) => {
   let newTasks;
   switch (action.type) {
     case ADD_TASK:
@@ -51,4 +51,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default rootReducer;
+export default taskReducer;
