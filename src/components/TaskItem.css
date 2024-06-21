@@ -1,0 +1,18 @@
+span.High {
+  border: 1px solid #f89a3b;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: #ffc080;
+}
+span.Medium {
+  border: 1px solid #b88d00;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: #ffd700;
+}
+span.Low {
+  border: 1px solid #269626;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: #32cd32;
+}

@@ -33,7 +33,8 @@ const TaskList = ({ setEditingTask }) => {
     })
     .filter(
       (task) =>
-        task.title.includes(search) || task.description.includes(search),
+        task.title.toLowerCase().includes(search.toLowerCase()) ||
+        task.description.toLowerCase().includes(search.toLowerCase()),
     )
     .sort((a, b) => {
       if (!sort) return 0;

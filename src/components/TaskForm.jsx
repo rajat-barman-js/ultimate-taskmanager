@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addTask, editTask } from "../redux/actions";
 import { PriorityList, Priority } from "../constants/enum";
+import "./TaskForm.css";
 
 const TaskForm = ({ editingTask, setEditingTask }) => {
   const [title, setTitle] = useState("");
