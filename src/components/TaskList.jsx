@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TaskItem from "./TaskItem";
-import { setFilter, setSort, setSearch } from "../redux/actions";
+import { setFilter, setSort, setSearch } from "../redux/task-actions";
 import { PRIORITY_ORDER } from "../constants/enum";
 import { FILTER, SORT } from "../constants/common-constant";
 import "./TaskList.css";

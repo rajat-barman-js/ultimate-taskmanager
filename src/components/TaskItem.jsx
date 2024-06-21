@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteTask, toggleTask } from "../redux/actions";
+import { deleteTask, toggleTask } from "../redux/task-actions";
 import "./TaskItem.css";
 
 function getLocalDate(dateString) {

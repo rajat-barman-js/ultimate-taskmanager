@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addTask, editTask } from "../redux/actions";
+import { addTask, editTask } from "../redux/task-actions";
 import { PriorityList, Priority } from "../constants/enum";
 import "./TaskForm.css";
 
