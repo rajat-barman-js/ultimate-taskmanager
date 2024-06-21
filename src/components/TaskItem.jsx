@@ -1,9 +1,22 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteTask, toggleTask } from "../redux/actions";
+import "./TaskItem.css";
 
 function getLocalDate(dateString) {
   const localDate = new Date(dateString);
+
+  // Get the current date
+  const today = new Date();
+
+  // Check if the given date is the same as today
+  if (
+    localDate.getFullYear() === today.getFullYear() &&
+    localDate.getMonth() === today.getMonth() &&
+    localDate.getDate() === today.getDate()
+  ) {
+    return "Today";
+  }
 
   // Get the local date
   const options = {
@@ -30,7 +43,9 @@ const TaskItem = ({ task, setEditingTask }) => {
       <h3 id={`task-title-${task.id}`}>{task.title}</h3>
       <p>{task.description}</p>
       <p>Due: {getLocalDate(task.dueDate)}</p>
-      <p>Priority: {task.priority}</p>
+      <p>
+        Priority: <span className={task.priority}>{task.priority}</span>
+      </p>
       <button onClick={() => dispatch(toggleTask(task.id))}>
         {task.completed ? "Mark as Incomplete" : "Mark as Complete"}
       </button>
