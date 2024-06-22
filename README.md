@@ -21,36 +21,6 @@ Installation
 3. Start the Application:
    npm start
 
-Project Structure
-
-ultimate-taskmanager/
-├── node_modules/
-├── public/
-│ └── index.html
-├── src/
-│ ├── components/
-│ │ ├── TaskForm.js
-│ │ ├── TaskForm.css
-│ │ ├── TaskItem.js
-│ │ ├── TaskItem.css
-│ │ ├── TaskList.js
-│ │ ├── TaskList.css
-│ ├── constants/
-│ │ ├── common-constants.js
-│ │ ├── enum.js
-│ ├── redux/
-│ │ ├── task-actions.js
-│ │ ├── task-reducers.js
-│ │ ├── store.js
-│ │ ├── custom-middleware.js
-│ ├── App.js
-│ ├── App.css
-│ ├── index.js
-│ ├── index.css
-├── .gitignore
-├── package.json
-└── README.md
-
 Components of the project
 
 1.TaskForm Component:
@@ -87,6 +57,36 @@ It combines TaskForm and TaskList to give the main interface of this application
 6. Entry Point:
 
 The entry point of the application is source/index.js file where it renders the App component inside the root div of public/index.html.
+
+Project Structure
+
+ultimate-taskmanager/
+├── node_modules/
+├── public/
+│ └── index.html
+├── src/
+│ ├── components/
+│ │ ├── TaskForm.js
+│ │ ├── TaskForm.css
+│ │ ├── TaskItem.js
+│ │ ├── TaskItem.css
+│ │ ├── TaskList.js
+│ │ ├── TaskList.css
+│ ├── constants/
+│ │ ├── common-constants.js
+│ │ ├── enum.js
+│ ├── redux/
+│ │ ├── task-actions.js
+│ │ ├── task-reducers.js
+│ │ ├── store.js
+│ │ ├── custom-middleware.js
+│ ├── App.js
+│ ├── App.css
+│ ├── index.js
+│ ├── index.css
+├── .gitignore
+├── package.json
+└── README.md
 
 Notes:
 

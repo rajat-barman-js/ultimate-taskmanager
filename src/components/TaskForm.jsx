@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { addTask, editTask } from "../redux/task-actions";
 import { PriorityList, Priority } from "../constants/enum";
 import "./TaskForm.css";
@@ -42,6 +43,7 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
           dueDate,
         }),
       );
+      toast.success("Task edited successfully");
     } else {
       dispatch(
         addTask({
@@ -53,6 +55,7 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
           completed: false,
         }),
       );
+      toast.success("Task created successfully");
     }
 
     resetForm();

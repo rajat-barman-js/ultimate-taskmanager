@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
 import store from "./redux/store";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [editingTask, setEditingTask] = useState(null);
@@ -17,6 +19,7 @@ const App = () => {
         <main>
           <TaskForm editingTask={editingTask} setEditingTask={setEditingTask} />
           <TaskList setEditingTask={setEditingTask} />
+          <ToastContainer />
         </main>
       </div>
     </Provider>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TaskItem from "./TaskItem";
 import { setFilter, setSort, setSearch } from "../redux/task-actions";
@@ -25,33 +25,35 @@ const TaskList = ({ setEditingTask }) => {
     dispatch(setSearch(e.target.value));
   };
 
-  const filteredTasks = tasks
-    .filter((task) => {
-      if (filter === FILTER.COMPLETED) return task.completed;
-      if (filter === FILTER.INCOMPLETE) return !task.completed;
-      return true;
-    })
-    .filter(
-      (task) =>
-        task.title.toLowerCase().includes(search.toLowerCase()) ||
-        task.description.toLowerCase().includes(search.toLowerCase()),
-    )
-    .sort((a, b) => {
-      if (!sort) return 0;
-      if (sort === SORT.PRIORITY_ASC) {
-        return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
-      }
-      if (sort === SORT.PRIORITY_DESC) {
-        return PRIORITY_ORDER[b.priority] - PRIORITY_ORDER[a.priority];
-      }
-      if (sort === SORT.DUE_DATE_ASC) {
-        return new Date(a.dueDate) - new Date(b.dueDate);
-      }
-      if (sort === SORT.DUE_DATE_DESC) {
-        return new Date(b.dueDate) - new Date(a.dueDate);
-      }
-      return 0;
-    });
+  const filteredTasks = useMemo(() => {
+    return tasks
+      .filter((task) => {
+        if (filter === FILTER.COMPLETED) return task.completed;
+        if (filter === FILTER.INCOMPLETE) return !task.completed;
+        return true;
+      })
+      .filter(
+        (task) =>
+          task.title.toLowerCase().includes(search.toLowerCase()) ||
+          task.description.toLowerCase().includes(search.toLowerCase()),
+      )
+      .sort((a, b) => {
+        if (!sort) return 0;
+        if (sort === SORT.PRIORITY_ASC) {
+          return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
+        }
+        if (sort === SORT.PRIORITY_DESC) {
+          return PRIORITY_ORDER[b.priority] - PRIORITY_ORDER[a.priority];
+        }
+        if (sort === SORT.DUE_DATE_ASC) {
+          return new Date(a.dueDate) - new Date(b.dueDate);
+        }
+        if (sort === SORT.DUE_DATE_DESC) {
+          return new Date(b.dueDate) - new Date(a.dueDate);
+        }
+        return 0;
+      });
+  }, [filter, sort, search, tasks]);
 
   return (
     <section className="task-list" aria-label="Task List">
