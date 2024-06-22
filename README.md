@@ -34,7 +34,7 @@ Can add or edit a task. It has title, description, priority and due date fields 
 Located at src/components/TaskItem.jsx and styled with src/components/TaskItem.css.
 
 Displays single tasks and allows them to be deleted, edited and toggle complete/incomplete.
-The delete function is represented by a "Delete" button while the complete function is represented by a "Mark as complete button", which can be toggled to icomplete by clicking on the "Mark as Incomplete" button. Task can be edited by clicking on the edit button and saving changes on the Edit Task form.
+The delete function is represented by a "Delete" button while the complete function is represented by a "Mark as complete button", which can be toggled to incomplete by clicking on the "Mark as Incomplete" button. Task can be edited by clicking on the edit button and saving changes on the Edit Task form.
 
 3. TaskList Component:
 

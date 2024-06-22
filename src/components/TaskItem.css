@@ -16,3 +16,82 @@ span.Low {
   border-radius: 5px;
   background: #32cd32;
 }
+
+.task-items {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.task-item {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.task-item.completed {
+  background-color: #e0ffe0;
+}
+
+.task-item h3 {
+  margin-top: 0;
+  font-size: 1.25em;
+  color: #333;
+}
+
+.task-item p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.task-item button {
+  display: inline-block;
+  padding: 8px 15px;
+  margin-right: 10px;
+  background-color: #38acff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task-item button:hover {
+  background-color: #0095ff;
+}
+
+.task-item button.edit {
+  background-color: #097aff;
+}
+
+.task-item button.edit:hover {
+  background-color: #024265;
+}
+
+.task-item button.delete {
+  background-color: #e74c3c;
+}
+
+.task-item button.delete:hover {
+  background-color: #840c0c;
+}
+
+/* .task-item button.completed {
+  background-color: #4caf50;
+}
+
+.task-item button.completed:hover {
+  background-color: #0c9f11;
+}
+
+.task-item button.incomplete {
+  background-color: #38acff;
+}
+
+.task-item button.incomplete:hover {
+  background-color: #0095ff;
+} */

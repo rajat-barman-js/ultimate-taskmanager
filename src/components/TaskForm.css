@@ -59,9 +59,9 @@ form button.delault-button {
   display: inline-block;
   padding: 10px 20px;
   margin-left: 10px;
-  background-color: #b1b1b1;
-  color: #fff;
-  border: none;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
   border-radius: 5px;
   font-size: 1em;
   cursor: pointer;
@@ -70,4 +70,13 @@ form button.delault-button {
 
 form button.delault-button:hover {
   background-color: #959595;
+}
+
+span.required {
+  color: red;
+}
+
+span.error {
+  font-size: 0.8em;
+  color: red;
 }

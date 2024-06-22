@@ -10,6 +10,7 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(Priority.LOW);
   const [dueDate, setDueDate] = useState("");
+  const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,36 +31,66 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
     setDueDate("");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const validate = () => {
+    const newErrors = {};
 
-    if (editingTask) {
-      dispatch(
-        editTask({
-          ...editingTask,
-          title,
-          description,
-          priority: priority,
-          dueDate,
-        }),
-      );
-      toast.success("Task edited successfully");
+    if (!title || !title.trim()) newErrors.title = "Title is required";
+    if (!description || !description.trim())
+      newErrors.description = "Description is required";
+    if (!priority) newErrors.priority = "Priority is required";
+    if (!dueDate) {
+      newErrors.dueDate = "Due Date is required";
     } else {
-      dispatch(
-        addTask({
-          id: Date.now(),
-          title,
-          description,
-          priority: priority,
-          dueDate,
-          completed: false,
-        }),
-      );
-      toast.success("Task created successfully");
+      const [year] = dueDate.split("-");
+      const selectedDate = new Date(dueDate).setHours(0, 0, 0, 0);
+      if (isNaN(selectedDate) || year.length > 4) {
+        newErrors.dueDate = "Invalid Date. You planned for too far ahead";
+      }
     }
 
-    resetForm();
-    setEditingTask(null);
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    try {
+      e.preventDefault();
+      const isValid = validate();
+      if (!isValid) {
+        return;
+      }
+
+      if (editingTask) {
+        dispatch(
+          editTask({
+            ...editingTask,
+            title,
+            description,
+            priority: priority,
+            dueDate,
+          }),
+        );
+        toast.success("Task edited successfully");
+      } else {
+        dispatch(
+          addTask({
+            id: Date.now(),
+            title,
+            description,
+            priority: priority,
+            dueDate,
+            completed: false,
+          }),
+        );
+        toast.success("Task created successfully");
+      }
+
+      resetForm();
+      setEditingTask(null);
+    } catch (error) {
+      toast.error("Error in Task Edit/Create");
+    }
   };
 
   const cancelEdit = (e) => {
@@ -75,7 +106,9 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
     >
       <h2>{editingTask ? "Edit Task" : "Add Task"}</h2>
       <div>
-        <label htmlFor="task-title">Title</label>
+        <label htmlFor="task-title">
+          Title <span className="required">*</span>
+        </label>
         <input
           id="task-title"
           type="text"
@@ -84,9 +117,12 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
           required
           aria-required="true"
         />
+        {errors.title && <span className="error">* {errors.title}</span>}
       </div>
       <div>
-        <label htmlFor="task-description">Description</label>
+        <label htmlFor="task-description">
+          Description <span className="required">*</span>
+        </label>
         <textarea
           id="task-description"
           value={description}
@@ -94,9 +130,14 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
           required
           aria-required="true"
         />
+        {errors.description && (
+          <span className="error">* {errors.description}</span>
+        )}
       </div>
       <div>
-        <label htmlFor="task-priority">Priority</label>
+        <label htmlFor="task-priority">
+          Priority <span className="required">*</span>
+        </label>
         <select
           id="task-priority"
           value={priority}
@@ -105,12 +146,18 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
           aria-required="true"
         >
           {PriorityList.map((priority) => (
-            <option value={priority}>{priority}</option>
+            <option key={priority} value={priority}>
+              {priority}
+            </option>
           ))}
         </select>
+
+        {errors.priority && <span className="error">* {errors.priority}</span>}
       </div>
       <div>
-        <label htmlFor="task-due-date">Due Date</label>
+        <label htmlFor="task-due-date">
+          Due Date <span className="required">*</span>
+        </label>
         <input
           id="task-due-date"
           type="date"
@@ -119,6 +166,8 @@ const TaskForm = ({ editingTask, setEditingTask }) => {
           required
           min={new Date().toISOString().slice(0, 10)}
         />
+
+        {errors.dueDate && <span className="error">* {errors.dueDate}</span>}
       </div>
       <button type="submit">{editingTask ? "Save Changes" : "Add Task"}</button>
       {editingTask ? (
