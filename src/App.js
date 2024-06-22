@@ -18,7 +18,7 @@ const App = () => {
         </header>
         <main>
           <TaskForm editingTask={editingTask} setEditingTask={setEditingTask} />
-          <TaskList setEditingTask={setEditingTask} />
+          <TaskList setEditingTask={setEditingTask} editingTask={editingTask} />
           <ToastContainer />
         </main>
       </div>

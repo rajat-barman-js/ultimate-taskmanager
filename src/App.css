@@ -59,6 +59,14 @@ header h1 {
   background-color: #fff;
 }
 
+button.inactive {
+  background-color: #a0a0a0;
+}
+
+button.inactive:hover {
+  background-color: #767676;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .controls {

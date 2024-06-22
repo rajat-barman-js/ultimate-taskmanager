@@ -6,7 +6,7 @@ import { PRIORITY_ORDER } from "../constants/enum";
 import { FILTER, SORT } from "../constants/common-constant";
 import "./TaskList.css";
 
-const TaskList = ({ setEditingTask }) => {
+const TaskList = ({ setEditingTask, editingTask }) => {
   const tasks = useSelector((state) => state.taskReducer.tasks);
   const filter = useSelector((state) => state.taskReducer.filter);
   const sort = useSelector((state) => state.taskReducer.sort);
@@ -89,7 +89,12 @@ const TaskList = ({ setEditingTask }) => {
       </div>
       <div className="task-items">
         {filteredTasks.map((task) => (
-          <TaskItem key={task.id} task={task} setEditingTask={setEditingTask} />
+          <TaskItem
+            key={task.id}
+            task={task}
+            setEditingTask={setEditingTask}
+            editingTask={editingTask}
+          />
         ))}
       </div>
     </section>

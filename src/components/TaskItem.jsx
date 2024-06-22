@@ -4,7 +4,7 @@ import { deleteTask, toggleTask } from "../redux/task-actions";
 import { getLocalDate } from "../helper/common-helper";
 import "./TaskItem.css";
 
-const TaskItem = ({ task, setEditingTask }) => {
+const TaskItem = ({ task, setEditingTask, editingTask }) => {
   const dispatch = useDispatch();
   function scrollToTop() {
     window.scrollTo({
@@ -25,18 +25,34 @@ const TaskItem = ({ task, setEditingTask }) => {
       <p>
         Priority: <span className={task.priority}>{task.priority}</span>
       </p>
-      <button onClick={() => dispatch(toggleTask(task.id))}>
+      <button
+        onClick={() =>
+          editingTask?.id === task.id ? null : dispatch(toggleTask(task.id))
+        }
+        className={editingTask?.id === task.id ? "inactive" : ""}
+      >
         {task.completed ? "Mark as Incomplete" : "Mark as Complete"}
       </button>
       <button
         onClick={() => {
+          if (editingTask?.id === task.id) {
+            return;
+          }
           setEditingTask(task);
           scrollToTop();
         }}
+        className={editingTask?.id === task.id ? "inactive" : ""}
       >
         Edit
       </button>
-      <button onClick={() => dispatch(deleteTask(task.id))}>Delete</button>
+      <button
+        onClick={() =>
+          editingTask?.id === task.id ? null : dispatch(deleteTask(task.id))
+        }
+        className={editingTask?.id === task.id ? "inactive" : ""}
+      >
+        Delete
+      </button>
     </div>
   );
 };
