@@ -20,8 +20,6 @@ const TaskItem = ({ task, setEditingTask, editingTask }) => {
     setShowPopup(true);
   }
 
-  function handleToggle() {}
-
   return (
     <div
       className={`task-item ${task.completed ? "completed" : ""}`}
@@ -76,14 +74,14 @@ const TaskItem = ({ task, setEditingTask, editingTask }) => {
       </button>
       {showPopup && (
         <Popup
-          message={"Are you sure you want to delete"}
+          message={"Are you sure you want to delete?"}
           onCancel={() => {
             setShowPopup(false);
           }}
           onConfirm={() => {
             dispatch(deleteTask(task.id));
             setShowPopup(false);
-            toast.success("Deleted successfully");
+            toast.success("Task deleted successfully");
           }}
         />
       )}

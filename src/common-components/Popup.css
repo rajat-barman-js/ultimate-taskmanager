@@ -26,8 +26,7 @@
   justify-content: space-between;
   margin-top: 20px;
 }
-
-.confirm-button,
+.popup-buttons .confirm-button,
 .cancel-button {
   padding: 10px 20px;
   border: none;
@@ -35,12 +34,22 @@
   cursor: pointer;
 }
 
-.confirm-button {
-  background-color: #e74c3c;
+.popup-buttons .confirm-button {
+  background-color: #1a45e1;
   color: #fff;
 }
 
-.cancel-button {
+.popup-buttons .confirm-button:hover {
+  background-color: #042ab4;
+  color: #fff;
+}
+
+.popup-buttons .cancel-button {
   background-color: #ccc;
+  color: #333;
+}
+
+.popup-buttons .cancel-button:hover {
+  background-color: rgb(152, 150, 150);
   color: #333;
 }
