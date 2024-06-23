@@ -51,6 +51,7 @@ const TaskItem = ({ task, setEditingTask, editingTask }) => {
             ? "completed"
             : "incomplete"
         }
+        aria-label={`Mark task ${task.completed ? "incomplete" : "complete"}`}
       >
         {task.completed ? "Mark as Incomplete" : "Mark as Complete"}
       </button>
@@ -63,12 +64,14 @@ const TaskItem = ({ task, setEditingTask, editingTask }) => {
           scrollToTop();
         }}
         className={editingTask?.id === task.id ? "inactive" : "edit"}
+        aria-label={`Edit task ${task.title}`}
       >
         Edit
       </button>
       <button
         onClick={() => (editingTask?.id === task.id ? null : handleDelete())}
         className={editingTask?.id === task.id ? "inactive" : "delete"}
+        aria-label={`Delete task ${task.title}`}
       >
         Delete
       </button>

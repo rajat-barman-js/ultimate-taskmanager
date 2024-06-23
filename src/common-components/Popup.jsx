@@ -19,11 +19,20 @@ const Popup = ({ message, onConfirm, onCancel }) => {
   }, [onCancel]);
 
   return (
-    <div className="popup-overlay">
+    <div
+      className="popup-overlay"
+      aria-modal="true"
+      role="dialog"
+      aria-labelledby="popup-message"
+    >
       <div className="popup-content" ref={popupRef}>
         <p>{message}</p>
         <div className="popup-buttons">
-          <button onClick={onConfirm} className="confirm-button">
+          <button
+            onClick={onConfirm}
+            className="confirm-button"
+            aria-label="Confirm"
+          >
             Confirm
           </button>
           <button
@@ -32,6 +41,7 @@ const Popup = ({ message, onConfirm, onCancel }) => {
               e.stopPropagation();
             }}
             className="cancel-button"
+            aria-label="Cancel"
           >
             Cancel
           </button>

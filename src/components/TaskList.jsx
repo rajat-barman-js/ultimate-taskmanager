@@ -63,6 +63,7 @@ const TaskList = ({ setEditingTask, editingTask }) => {
           placeholder="Search tasks"
           value={search}
           onChange={handleSearch}
+          aria-label="Search tasks"
         />
         <div className="dropdowns">
           <select
@@ -87,7 +88,7 @@ const TaskList = ({ setEditingTask, editingTask }) => {
           </select>
         </div>
       </div>
-      <div className="task-items">
+      <div className="task-items" role="list" aria-labelledby="task-list-title">
         {filteredTasks.map((task) => (
           <TaskItem
             key={task.id}
